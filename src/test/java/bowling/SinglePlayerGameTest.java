@@ -20,6 +20,7 @@ public class SinglePlayerGameTest {
 	/**
 	 * Si on envoie toutes les 20 boules dans la rigole, le score final est 0
 	 */
+        /*
 	@Test
 	public void testGutterGame() {
 		rollMany(20, 0);
@@ -48,14 +49,14 @@ public class SinglePlayerGameTest {
 		rollMany(16, 0);
 		assertEquals(24, game.score());
 	}
-
+*/
 	@Test
 	public void testPerfectGame() {
 		// 12 boules à 10 points
 		rollMany(12, 10);
 		assertEquals(300, game.score());
 	}
-
+/*
 	@Test
 	public void testTypicalGame()  {
 		rollMany(8, 3); // 6 points aux 4 1° tours -> 24
@@ -66,7 +67,7 @@ public class SinglePlayerGameTest {
 
 		assertEquals(84, game.score());
 	}
-
+*/
 	// Quelques methodes utilitaires pour faciliter l'écriture des tests
 	private void rollMany(int n, int pins) {
 		for (int i = 0; i < n; i++) {
