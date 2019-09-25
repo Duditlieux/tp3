@@ -29,7 +29,7 @@ public class SinglePlayerGame {
     }
     
     private void nextLaunch(){
-        if(m_round < MAX_ROUND){//tout les cas sauf le derniers round
+        if(m_round < MAX_ROUND-1){//tout les cas sauf le derniers round
             switch(++m_launch){
                 case 2:
                     if(m_quillesRestantes == 0){
@@ -60,6 +60,18 @@ public class SinglePlayerGame {
                 default:
                     break;
             }
+        }
+        else{
+            if(m_launch==3){
+                m_isSpareState=false;
+                m_isStrikeState=false;
+            }
+            if(m_launch!=1)
+                if(--m_strikeMultiplicator <1)
+                    m_strikeMultiplicator=1;
+            if(m_quillesRestantes == 0)
+                m_quillesRestantes=MAX_QUILLES;
+            ++m_launch;
         }
     }
     
