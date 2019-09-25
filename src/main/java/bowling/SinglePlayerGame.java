@@ -77,6 +77,8 @@ public class SinglePlayerGame {
             //fin du lancé
             ++m_launch;
         }
+        if(m_launch > 3)
+            throw new ErrTooMuchLaunch();
     }
     
     /**
@@ -85,7 +87,9 @@ public class SinglePlayerGame {
      * @param nombreDeQuillesAbattues le nombre de quilles abattues lors de
      * ce lancé
      */
-    public void lancer(int nombreDeQuillesAbattues) {
+    public void lancer(int nombreDeQuillesAbattues) throws ErrArgmuentExeption {
+        if(nombreDeQuillesAbattues > m_quillesRestantes || nombreDeQuillesAbattues<0)
+            throw new ErrArgmuentExeption("les quilles abattues est de " + nombreDeQuillesAbattues + ", ce qui est interdit");
         int scored;
         if(m_isStrikeState)//si le tire précédent était un strike, on lui applique un muslitplicateur
              scored=(nombreDeQuillesAbattues*m_strikeMultiplicator);
