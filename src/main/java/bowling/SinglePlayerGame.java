@@ -103,6 +103,7 @@ public class SinglePlayerGame {
         try {
             nextLaunch();
         } catch (Exception e) {
+            e.printStackTrace();
         }
             
     }
