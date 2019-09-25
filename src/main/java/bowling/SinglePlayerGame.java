@@ -41,15 +41,17 @@ public class SinglePlayerGame {
                         m_isStrikeState=true;
                         m_quillesRestantes=MAX_QUILLES;
                     }
+                    //si on ne renverse pas tout, on force l'état du spare à false, pour ne pas que le prohain coup soit multiplié
                     m_isSpareState=false;
                     break;
-                case 3:
+                case 3://pas de strike, donc
                     m_strikeMultiplicator=1;
                     m_isStrikeState=false;
-                    if(m_quillesRestantes == 0){
+                    if(m_quillesRestantes == 0)
+                        //spare
                         m_isSpareState=true;
-                    }
                     else
+                        //pas spare
                         m_isSpareState=false;
                     
                     //fin du round
@@ -61,16 +63,18 @@ public class SinglePlayerGame {
                     break;
             }
         }
-        else{
-            if(m_launch==3){
+        else{//cas du dernier round
+            if(m_launch==3){//si on est à notre troisième lancé, on désactive tout les multiplicateurs
                 m_isSpareState=false;
                 m_isStrikeState=false;
             }
             if(m_launch!=1)
                 if(--m_strikeMultiplicator <1)
+                    //à partir du second lancé on décrémente le multiplicateur du strike
                     m_strikeMultiplicator=1;
             if(m_quillesRestantes == 0)
                 m_quillesRestantes=MAX_QUILLES;
+            //fin du lancé
             ++m_launch;
         }
     }
@@ -83,15 +87,15 @@ public class SinglePlayerGame {
      */
     public void lancer(int nombreDeQuillesAbattues) {
         int scored;
-        if(m_isStrikeState)
+        if(m_isStrikeState)//si le tire précédent était un strike, on lui applique un muslitplicateur
              scored=(nombreDeQuillesAbattues*m_strikeMultiplicator);
-        else if(m_isSpareState)
+        else if(m_isSpareState)//si le lancé précédent était un spare, on multiplie par 2
             scored=(nombreDeQuillesAbattues*2);
-        else
+        else//sinon on ajoute les points normalement
            scored=nombreDeQuillesAbattues;
-        System.out.println(scored);
         m_score+=scored;
         m_quillesRestantes-=nombreDeQuillesAbattues;
+        //préparation au prochain lancé
         nextLaunch();
     }
 
