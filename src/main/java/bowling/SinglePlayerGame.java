@@ -28,7 +28,7 @@ public class SinglePlayerGame {
         m_strikeMultiplicator=1;
     }
     
-    private void nextLaunch(){
+    private void nextLaunch() throws ErrTooMuchLaunch{
         if(m_round < MAX_ROUND-1){//tout les cas sauf le derniers round
             switch(++m_launch){
                 case 2:
@@ -100,7 +100,11 @@ public class SinglePlayerGame {
         m_score+=scored;
         m_quillesRestantes-=nombreDeQuillesAbattues;
         //préparation au prochain lancé
-        nextLaunch();
+        try {
+            nextLaunch();
+        } catch (Exception e) {
+        }
+            
     }
 
     /**
